@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../component/ProductCard";
 import { Row, Col, Container, Alert } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import { API_BASE_URL } from "../constants";
 
 const ProductAll = () => {
   let [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ const ProductAll = () => {
   const getProducts = async () => {
     try {
       let keyword = query.get("q") || "";
-      let url = `https://my-json-server.typicode.com/legobitna/hnm-react-router/products?q=${keyword}`;
+      let url = `${API_BASE_URL}/products?q=${keyword}`;
       let response = await fetch(url);
       let data = await response.json();
       if (data.length < 1) {
@@ -30,6 +31,7 @@ const ProductAll = () => {
   useEffect(() => {
     getProducts();
   }, [query]);
+
   return (
     <Container>
       {error ? (

@@ -3,11 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { MENU_LIST } from "../constants";
 
 const Navbar = ({ authenticate, setAuthenticate }) => {
-  const menuList = [
-    "여성", "Divided", "남성", "신생아/유아", "아동", "H&M HOME", "Sale", "지속가능성"
-  ];
   const [width, setWidth] = useState(0);
   const navigate = useNavigate();
 
@@ -20,9 +18,11 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
   return (
     <div>
       <div className="side-menu" style={{ width: width }}>
-        <button className="closebtn" onClick={() => setWidth(0)}>&times;</button>
+        <button className="closebtn" onClick={() => setWidth(0)}>
+          &times;
+        </button>
         <div className="side-menu-list" id="menu-list">
-          {menuList.map((menu, index) => (
+          {MENU_LIST.map((menu, index) => (
             <button key={index}>{menu}</button>
           ))}
         </div>
@@ -55,7 +55,7 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
       </div>
       <div className="nav-menu-area">
         <ul className="menu">
-          {menuList.map((menu, index) => (
+          {MENU_LIST.map((menu, index) => (
             <li key={index}>
               <a href="#">{menu}</a>
             </li>

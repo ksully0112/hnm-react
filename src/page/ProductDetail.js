@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Dropdown, Alert } from "react-bootstrap";
+import { API_BASE_URL } from "../constants";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
@@ -11,7 +12,7 @@ const ProductDetail = () => {
   const getProductDetail = async () => {
     setLoading(true);
     try {
-      let url = `https://my-json-server.typicode.com/legobitna/hnm-react-router/products/${id}`;
+      let url = `${API_BASE_URL}/products/${id}`;
       let response = await fetch(url);
       let data = await response.json();
       setProduct(data);
@@ -49,7 +50,9 @@ const ProductDetail = () => {
             <Dropdown.Menu>
               {product?.size.length > 0 &&
                 product.size.map((item, index) => (
-                  <Dropdown.Item key={index} href="#/action-1">{item}</Dropdown.Item>
+                  <Dropdown.Item key={index} href="#/action-1">
+                    {item}
+                  </Dropdown.Item>
                 ))}
             </Dropdown.Menu>
           </Dropdown>

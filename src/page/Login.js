@@ -1,14 +1,16 @@
 import React from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-const Login = ({ setAuthenticate, to }) => {
-  console.log("tototo", to);
+
+const Login = ({ setAuthenticate }) => {
   const navigate = useNavigate();
+
   const login = (event) => {
     event.preventDefault();
     setAuthenticate(true);
     navigate("/");
   };
+
   return (
     <Container className="login-area">
       <Form className="login-form" onSubmit={login}>
